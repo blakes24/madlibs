@@ -25,7 +25,7 @@ function Madlib({ choices = Choices }) {
     setTemplate(null);
     setPrompts([]);
   };
-  
+
   const handleChange = (evt) => {
     clearState();
     let selectedOption = evt.target["value"];
@@ -41,17 +41,18 @@ function Madlib({ choices = Choices }) {
   return (
     <div className="Madlib">
       <h1>Madlibs!</h1>
-
-      <select required onChange={handleChange}>
-        <option value="" key="pick">
-          Pick a Story
-        </option>
-        {options.map((option, idx) => (
-          <option key={idx} value={option}>
-            {option}
+      {!answers && (
+        <select required onChange={handleChange}>
+          <option value="" key="pick">
+            Pick a Story
           </option>
-        ))}
-      </select>
+          {options.map((option, idx) => (
+            <option key={idx} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      )}
 
       {answers ? (
         <Story
